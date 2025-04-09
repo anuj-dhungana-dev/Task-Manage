@@ -38,10 +38,11 @@ export const allTask = async (req, res) => {
  */
 export const addTask = async (req, res) => {
   try {
-    const { title, description, priorty } = req.body;
+    const { title, description, priority } = req.body;
+    const normalizedpriority = priority?.trim().toLowerCase();
     const userId = req.userId;
 
-    if (!title || !description || !priorty) {
+    if (!title || !description || !normalizedpriority) {
       return res.status(400).json({
         success: false,
         message: "All fields are required",
@@ -51,7 +52,7 @@ export const addTask = async (req, res) => {
     const task = await Task.create({
       title,
       description,
-      priorty,
+      priority,
       userId,
     });
 

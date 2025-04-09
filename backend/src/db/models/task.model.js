@@ -17,8 +17,8 @@ const Task = sequelize.define(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    priorty: {
-      type: DataTypes.ENUM("high", "mid", "low"),
+    priority: {
+      type: DataTypes.ENUM("high", "medium", "low"),
       allowNull: false,
     },
     userId: {
@@ -41,6 +41,5 @@ const Task = sequelize.define(
 //onDelete: "CASCADE" When a user is deleted, their tasks will also be deleted
 User.hasMany(Task, { foreignKey: "userId", onDelete: "CASCADE" });
 Task.belongsTo(User, { foreignKey: "userId", onDelete: "CASCADE" });
-
 
 export default Task;
